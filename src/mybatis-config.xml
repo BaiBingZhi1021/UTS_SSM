@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+      <package name="uts.ui.mapping"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                <property name="url" value="jdbc:oracle:thin:@10.2.3.211:1521:UTSDB"/>
+                <property name="username" value="HLBMY_UTS_DEV"/>
+                <property name="password" value="uts"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="uts/ui/mapping/CurrencyMapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uts.dao.CurrencyMapper">
+  <resultMap id="BaseResultMap" type="uts.ui.pojo.Currency">
+    <id column="GEN_INSTTU_CODE" jdbcType="NVARCHAR" property="genInsttuCode" />
+    <id column="GEN_LANG_ID" jdbcType="NVARCHAR" property="genLangId" />
+    <result column="GEN_CCY_CODE" jdbcType="NVARCHAR" property="genCcyCode" />
+    <result column="GEN_CCY_DEC_NO" jdbcType="DECIMAL" property="genCcyDecNo" />
+    <result column="GEN_CCY_NAME" jdbcType="NVARCHAR" property="genCcyName" />
+    <result column="GEN_CCY_CHI_NAME" jdbcType="NVARCHAR" property="genCcyChiName" />
+    <result column="GEN_CCY_INT_CAL_DAY_NO" jdbcType="DECIMAL" property="genCcyIntCalDayNo" />
+    <result column="GEN_CCY_SYS_USE_F" jdbcType="NVARCHAR" property="genCcySysUseF" />
+    <result column="MNT_AUT_DNT" jdbcType="TIMESTAMP" property="mntAutDnt" />
+    <result column="MNT_AUT_ID" jdbcType="NVARCHAR" property="mntAutId" />
+    <result column="MNT_AUTSTTS_F" jdbcType="NVARCHAR" property="mntAutsttsF" />
+    <result column="MNT_MAKER_DNT" jdbcType="TIMESTAMP" property="mntMakerDnt" />
+    <result column="MNT_MAKER_ID" jdbcType="NVARCHAR" property="mntMakerId" />
+    <result column="MNT_STTS_F" jdbcType="NVARCHAR" property="mntSttsF" />
+    <result column="MNT_VERSION_NO" jdbcType="DECIMAL" property="mntVersionNo" />
+    <result column="MNT_INTERFACE_CODE" jdbcType="NVARCHAR" property="mntInterfaceCode" />
+    <result column="MNT_EDITMASK_TXT" jdbcType="NVARCHAR" property="mntEditmaskTxt" />
+    <result column="MNT_CRT_DNT" jdbcType="TIMESTAMP" property="mntCrtDnt" />
+    <result column="MNT_CRT_ID" jdbcType="NVARCHAR" property="mntCrtId" />
+    <result column="MNT_MAKER_SVR_DNT" jdbcType="TIMESTAMP" property="mntMakerSvrDnt" />
+    <result column="MNT_AUT_SVR_DNT" jdbcType="TIMESTAMP" property="mntAutSvrDnt" />
+    <result column="MNT_CRT_SVR_DNT" jdbcType="TIMESTAMP" property="mntCrtSvrDnt" />
+    <result column="GEN_CCY_DP_DC_F" jdbcType="NVARCHAR" property="genCcyDpDcF" />
+    <result column="GEN_CCY_INT_CAL_MTHD_CODE" jdbcType="NVARCHAR" property="genCcyIntCalMthdCode" />
+    <result column="GEN_CCY_INT_CAL_DEC_NO" jdbcType="DECIMAL" property="genCcyIntCalDecNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GEN_INSTTU_CODE, GEN_LANG_ID, GEN_CCY_CODE, GEN_CCY_DEC_NO, GEN_CCY_NAME, GEN_CCY_CHI_NAME, 
+    GEN_CCY_INT_CAL_DAY_NO, GEN_CCY_SYS_USE_F, MNT_AUT_DNT, MNT_AUT_ID, MNT_AUTSTTS_F, 
+    MNT_MAKER_DNT, MNT_MAKER_ID, MNT_STTS_F, MNT_VERSION_NO, MNT_INTERFACE_CODE, MNT_EDITMASK_TXT, 
+    MNT_CRT_DNT, MNT_CRT_ID, MNT_MAKER_SVR_DNT, MNT_AUT_SVR_DNT, MNT_CRT_SVR_DNT,
+    GEN_CCY_DP_DC_F, GEN_CCY_INT_CAL_MTHD_CODE, GEN_CCY_INT_CAL_DEC_NO
+  </sql>
+  <select id="listCurrency" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GEN_CURRENCY
+    where GEN_INSTTU_CODE = #{genInsttuCode}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from GEN_CURRENCY
+    where GEN_INSTTU_CODE = #{genInsttuCode}
+      and GEN_LANG_ID = #{genLangId}
+      and GEN_CCY_CODE = #{genCcyCode}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from GEN_CURRENCY
+    where GEN_INSTTU_CODE = #{genInsttuCode}
+      and GEN_LANG_ID = #{genLangId}
+      and GEN_CCY_CODE = #{genCcyCode}
+  </delete>
+  <insert id="insert" parameterType="uts.ui.pojo.Currency">
+    insert into GEN_CURRENCY (GEN_INSTTU_CODE, GEN_LANG_ID, GEN_CCY_CODE, 
+      GEN_CCY_DEC_NO, GEN_CCY_NAME, GEN_CCY_CHI_NAME, 
+      GEN_CCY_INT_CAL_DAY_NO, GEN_CCY_SYS_USE_F, MNT_AUT_DNT, 
+      MNT_AUT_ID, MNT_AUTSTTS_F, MNT_MAKER_DNT, 
+      MNT_MAKER_ID, MNT_STTS_F, MNT_VERSION_NO, 
+      MNT_INTERFACE_CODE, MNT_EDITMASK_TXT, MNT_CRT_DNT, MNT_CRT_ID, 
+      MNT_MAKER_SVR_DNT, MNT_AUT_SVR_DNT, MNT_CRT_SVR_DNT, 
+      GEN_CCY_DP_DC_F, GEN_CCY_INT_CAL_MTHD_CODE, GEN_CCY_INT_CAL_DEC_NO)
+    values (#{genInsttuCode,jdbcType=NVARCHAR}, #{genLangId,jdbcType=NVARCHAR}, #{genCcyCode,jdbcType=NVARCHAR}, 
+      #{genCcyDecNo,jdbcType=DECIMAL}, #{genCcyName,jdbcType=NVARCHAR}, #{genCcyChiName,jdbcType=NVARCHAR}, 
+      #{genCcyIntCalDayNo,jdbcType=DECIMAL}, #{genCcySysUseF,jdbcType=NVARCHAR}, #{mntAutDnt,jdbcType=TIMESTAMP}, 
+      #{mntAutId,jdbcType=NVARCHAR}, #{mntAutsttsF,jdbcType=NVARCHAR}, #{mntMakerDnt,jdbcType=TIMESTAMP}, 
+      #{mntMakerId,jdbcType=NVARCHAR}, #{mntSttsF,jdbcType=NVARCHAR}, #{mntVersionNo,jdbcType=DECIMAL}, 
+      #{mntInterfaceCode,jdbcType=NVARCHAR}, #{mntEditmaskTxt,jdbcType=NVARCHAR}, 
+      #{mntCrtDnt,jdbcType=TIMESTAMP}, #{mntCrtId,jdbcType=NVARCHAR}, 
+      #{mntMakerSvrDnt,jdbcType=TIMESTAMP}, #{mntAutSvrDnt,jdbcType=TIMESTAMP}, #{mntCrtSvrDnt,jdbcType=TIMESTAMP}, 
+      #{genCcyDpDcF,jdbcType=NVARCHAR}, #{genCcyIntCalMthdCode,jdbcType=NVARCHAR}, #{genCcyIntCalDecNo,jdbcType=DECIMAL} 
+  </insert>
+  <insert id="insertSelective" parameterType="uts.ui.pojo.Currency">
+    insert into GEN_CURRENCY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="genInsttuCode != null">
+        GEN_INSTTU_CODE,
+      </if>
+      <if test="genLangId != null">
+        GEN_LANG_ID,
+      </if>
+      <if test="genCcyCode != null">
+        GEN_CCY_CODE,
+      </if>
+      <if test="genCcyDecNo != null">
+        GEN_CCY_DEC_NO,
+      </if>
+      <if test="genCcyName != null">
+        GEN_CCY_NAME,
+      </if>
+      <if test="genCcyChiName != null">
+        GEN_CCY_CHI_NAME,
+      </if>
+      <if test="genCcyIntCalDayNo != null">
+        GEN_CCY_INT_CAL_DAY_NO,
+      </if>
+      <if test="genCcySysUseF != null">
+        GEN_CCY_SYS_USE_F,
+      </if>
+      <if test="mntAutDnt != null">
+        MNT_AUT_DNT,
+      </if>
+      <if test="mntAutId != null">
+        MNT_AUT_ID,
+      </if>
+      <if test="mntAutsttsF != null">
+        MNT_AUTSTTS_F,
+      </if>
+      <if test="mntMakerDnt != null">
+        MNT_MAKER_DNT,
+      </if>
+      <if test="mntMakerId != null">
+        MNT_MAKER_ID,
+      </if>
+      <if test="mntSttsF != null">
+        MNT_STTS_F,
+      </if>
+      <if test="mntVersionNo != null">
+        MNT_VERSION_NO,
+      </if>
+      <if test="mntInterfaceCode != null">
+        MNT_INTERFACE_CODE,
+      </if>
+      <if test="mntEditmaskTxt != null">
+        MNT_EDITMASK_TXT,
+      </if>
+      <if test="mntCrtDnt != null">
+        MNT_CRT_DNT,
+      </if>
+      <if test="mntCrtId != null">
+        MNT_CRT_ID,
+      </if>
+      <if test="mntMakerSvrDnt != null">
+        MNT_MAKER_SVR_DNT,
+      </if>
+      <if test="mntAutSvrDnt != null">
+        MNT_AUT_SVR_DNT,
+      </if>
+      <if test="mntCrtSvrDnt != null">
+        MNT_CRT_SVR_DNT,
+      </if>
+      <if test="genCcyDpDcF != null">
+        GEN_CCY_DP_DC_F,
+      </if>
+      <if test="genCcyIntCalMthdCode != null">
+        GEN_CCY_INT_CAL_MTHD_CODE,
+      </if>
+      <if test="genCcyIntCalDecNo != null">
+        GEN_CCY_INT_CAL_DEC_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="genInsttuCode != null">
+        #{genInsttuCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="genLangId != null">
+        #{genLangId,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyCode != null">
+        #{genCcyCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyDecNo != null">
+        #{genCcyDecNo,jdbcType=DECIMAL},
+      </if>
+      <if test="genCcyName != null">
+        #{genCcyName,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyChiName != null">
+        #{genCcyChiName,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyIntCalDayNo != null">
+        #{genCcyIntCalDayNo,jdbcType=DECIMAL},
+      </if>
+      <if test="genCcySysUseF != null">
+        #{genCcySysUseF,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntAutDnt != null">
+        #{mntAutDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntAutId != null">
+        #{mntAutId,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntAutsttsF != null">
+        #{mntAutsttsF,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntMakerDnt != null">
+        #{mntMakerDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntMakerId != null">
+        #{mntMakerId,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntSttsF != null">
+        #{mntSttsF,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntVersionNo != null">
+        #{mntVersionNo,jdbcType=DECIMAL},
+      </if>
+      <if test="mntInterfaceCode != null">
+        #{mntInterfaceCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntEditmaskTxt != null">
+        #{mntEditmaskTxt,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntCrtDnt != null">
+        #{mntCrtDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntCrtId != null">
+        #{mntCrtId,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntMakerSvrDnt != null">
+        #{mntMakerSvrDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntAutSvrDnt != null">
+        #{mntAutSvrDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntCrtSvrDnt != null">
+        #{mntCrtSvrDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="genCcyDpDcF != null">
+        #{genCcyDpDcF,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyIntCalMthdCode != null">
+        #{genCcyIntCalMthdCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyIntCalDecNo != null">
+        #{genCcyIntCalDecNo,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="uts.ui.pojo.Currency">
+    update GEN_CURRENCY
+    <set>
+      <if test="genCcyDecNo != null">
+        GEN_CCY_DEC_NO = #{genCcyDecNo,jdbcType=DECIMAL},
+      </if>
+      <if test="genCcyName != null">
+        GEN_CCY_NAME = #{genCcyName,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyChiName != null">
+        GEN_CCY_CHI_NAME = #{genCcyChiName,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyIntCalDayNo != null">
+        GEN_CCY_INT_CAL_DAY_NO = #{genCcyIntCalDayNo,jdbcType=DECIMAL},
+      </if>
+      <if test="genCcySysUseF != null">
+        GEN_CCY_SYS_USE_F = #{genCcySysUseF,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntAutDnt != null">
+        MNT_AUT_DNT = #{mntAutDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntAutId != null">
+        MNT_AUT_ID = #{mntAutId,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntAutsttsF != null">
+        MNT_AUTSTTS_F = #{mntAutsttsF,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntMakerDnt != null">
+        MNT_MAKER_DNT = #{mntMakerDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntMakerId != null">
+        MNT_MAKER_ID = #{mntMakerId,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntSttsF != null">
+        MNT_STTS_F = #{mntSttsF,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntVersionNo != null">
+        MNT_VERSION_NO = #{mntVersionNo,jdbcType=DECIMAL},
+      </if>
+      <if test="mntInterfaceCode != null">
+        MNT_INTERFACE_CODE = #{mntInterfaceCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntEditmaskTxt != null">
+        MNT_EDITMASK_TXT = #{mntEditmaskTxt,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntCrtDnt != null">
+        MNT_CRT_DNT = #{mntCrtDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntCrtId != null">
+        MNT_CRT_ID = #{mntCrtId,jdbcType=NVARCHAR},
+      </if>
+      <if test="mntMakerSvrDnt != null">
+        MNT_MAKER_SVR_DNT = #{mntMakerSvrDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntAutSvrDnt != null">
+        MNT_AUT_SVR_DNT = #{mntAutSvrDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mntCrtSvrDnt != null">
+        MNT_CRT_SVR_DNT = #{mntCrtSvrDnt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="genCcyDpDcF != null">
+        GEN_CCY_DP_DC_F = #{genCcyDpDcF,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyIntCalMthdCode != null">
+        GEN_CCY_INT_CAL_MTHD_CODE = #{genCcyIntCalMthdCode,jdbcType=NVARCHAR},
+      </if>
+      <if test="genCcyIntCalDecNo != null">
+        GEN_CCY_INT_CAL_DEC_NO = #{genCcyIntCalDecNo,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where GEN_INSTTU_CODE = #{genInsttuCode,jdbcType=NVARCHAR}
+      and GEN_LANG_ID = #{genLangId,jdbcType=NVARCHAR}
+      and GEN_CCY_CODE = #{genCcyCode,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="uts.ui.pojo.Currency">
+    update GEN_CURRENCY
+    set GEN_CCY_DEC_NO = #{genCcyDecNo,jdbcType=DECIMAL},
+      GEN_CCY_NAME = #{genCcyName,jdbcType=NVARCHAR},
+      GEN_CCY_CHI_NAME = #{genCcyChiName,jdbcType=NVARCHAR},
+      GEN_CCY_INT_CAL_DAY_NO = #{genCcyIntCalDayNo,jdbcType=DECIMAL},
+      GEN_CCY_SYS_USE_F = #{genCcySysUseF,jdbcType=NVARCHAR},
+      MNT_AUT_DNT = #{mntAutDnt,jdbcType=TIMESTAMP},
+      MNT_AUT_ID = #{mntAutId,jdbcType=NVARCHAR},
+      MNT_AUTSTTS_F = #{mntAutsttsF,jdbcType=NVARCHAR},
+      MNT_MAKER_DNT = #{mntMakerDnt,jdbcType=TIMESTAMP},
+      MNT_MAKER_ID = #{mntMakerId,jdbcType=NVARCHAR},
+      MNT_STTS_F = #{mntSttsF,jdbcType=NVARCHAR},
+      MNT_VERSION_NO = #{mntVersionNo,jdbcType=DECIMAL},
+      MNT_INTERFACE_CODE = #{mntInterfaceCode,jdbcType=NVARCHAR},
+      MNT_EDITMASK_TXT = #{mntEditmaskTxt,jdbcType=NVARCHAR},
+      MNT_CRT_DNT = #{mntCrtDnt,jdbcType=TIMESTAMP},
+      MNT_CRT_ID = #{mntCrtId,jdbcType=NVARCHAR},
+      MNT_MAKER_SVR_DNT = #{mntMakerSvrDnt,jdbcType=TIMESTAMP},
+      MNT_AUT_SVR_DNT = #{mntAutSvrDnt,jdbcType=TIMESTAMP},
+      MNT_CRT_SVR_DNT = #{mntCrtSvrDnt,jdbcType=TIMESTAMP},
+      GEN_CCY_DP_DC_F = #{genCcyDpDcF,jdbcType=NVARCHAR},
+      GEN_CCY_INT_CAL_MTHD_CODE = #{genCcyIntCalMthdCode,jdbcType=NVARCHAR},
+      GEN_CCY_INT_CAL_DEC_NO = #{genCcyIntCalDecNo,jdbcType=DECIMAL}
+    where GEN_INSTTU_CODE = #{genInsttuCode,jdbcType=NVARCHAR}
+      and GEN_LANG_ID = #{genLangId,jdbcType=NVARCHAR}
+      and GEN_CCY_CODE = #{genCcyCode,jdbcType=NVARCHAR}
+  </update>  
+</mapper>
