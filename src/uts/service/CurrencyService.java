@@ -6,6 +6,7 @@ import java.util.Map;
 import uts.ui.pojo.Currency;
 
 public interface CurrencyService {
+	
 	List<Currency> listCurrency(String genInsttuCode);
 	
 	int deleteByPrimaryKey(Map<String, String> key);

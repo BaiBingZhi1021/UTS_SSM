@@ -3,6 +3,9 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>  
+        <setting name="logImpl" value="LOG4J"/>  
+    </settings> 
     <typeAliases>
       <package name="uts.ui.mapping"/>
     </typeAliases>
@@ -19,5 +22,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     </environments>
     <mappers>
         <mapper resource="uts/ui/mapping/CurrencyMapper.xml"/>
+        <mapper resource="uts/ui/mapping/CustomerMapper.xml"/>
     </mappers>
 </configuration>
