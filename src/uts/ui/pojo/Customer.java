@@ -1,6 +1,8 @@
 package uts.ui.pojo;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
 	private String custNo;
 	private String custLastName;
 	private String genBrchCode;
