@@ -9,6 +9,7 @@
     xmlns:jee="http://www.springframework.org/schema/jee"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:amq="http://activemq.apache.org/schema/core"
+    xmlns:jms="http://www.springframework.org/schema/jms"
     xsi:schemaLocation="
        http://activemq.apache.org/schema/core
        http://activemq.apache.org/schema/core/activemq-core.xsd
@@ -22,12 +23,14 @@
 	   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 	   http://www.springframework.org/schema/context     
 	   http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	   http://www.springframework.org/schema/jms   
+	   http://www.springframework.org/schema/jms/spring-jms-3.0.xsd
 	   http://www.springframework.org/schema/jee
 	   http://www.springframework.org/schema/jee/spring-jee.xsd">
   	
   	<context:annotation-config />
   	<cache:annotation-driven />
-  	<context:component-scan base-package="uts.service"></context:component-scan>
+  	<context:component-scan base-package="uts.service, uts.alerts"></context:component-scan>
   	<aop:aspectj-autoproxy />
   	<aop:config>
 		<aop:advisor advice-ref="cacheAdvice"
@@ -84,7 +87,7 @@
 	<!-- 主题 -->
 	<amq:topic id="customerTopic" physicalName="customer.alert.topic" />
 	<!-- 消息转换器 -->
-	<bean id="messageConverter" class="org.springframework.jms.support.converter.MappingJacksonConverter"></bean>
+	<bean id="messageConverter" class="org.springframework.jms.support.converter.SimpleMessageConverter"></bean>
 	<bean id="jmsTemplate"
 		class="org.springframework.jms.core.JmsTemplate"
 		c:_-ref="connectionFactory"
@@ -92,4 +95,8 @@
 		p:messageConverter-ref="messageConverter" />
 	
 	<bean id="customerHandler" class="uts.alerts.CustomerAlertHandler" />
+	
+	<jms:listener-container connection-factory="connectionFactory">
+		<jms:listener destination="customer.alert.queue" ref="customerHandler" method="handleCustomerAlert"/>
+	</jms:listener-container>
 </beans>

@@ -12,6 +12,7 @@ public class TestSpring {
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
 		Currency currency = (Currency)context.getBean("currency");
 		System.out.print(currency.getGenCcyCode());
+		
 	}
 
 }

@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Unit Trust System</title>
+<%@ include file="/jsp/public/head.jspf" %>
 </head>
 <body>
 <table width="100%" align="center" border="1" cellspacing="0">

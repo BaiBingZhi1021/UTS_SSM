@@ -1,15 +1,13 @@
 package uts.alerts;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsOperations;
-import org.springframework.jms.core.MessageCreator;
+import org.springframework.stereotype.Service;
 
 import uts.ui.pojo.Customer;
 
+@Service("alertService")
 public class AlertServiceImpl implements AlertService {
 
 	private JmsOperations jmsOperations;
@@ -33,4 +31,7 @@ public class AlertServiceImpl implements AlertService {
 		jmsOperations.convertAndSend(customer);
 	}
 
+	public Customer retrieveSpittleAlert(){
+		return (Customer)jmsOperations.receiveAndConvert();
+	}
 }
